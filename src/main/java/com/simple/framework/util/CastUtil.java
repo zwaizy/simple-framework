@@ -41,7 +41,7 @@ public final class CastUtil {
 		return value;
 	}
 
-	private static String castString(Object obj) {
+	public static String castString(Object obj) {
 		return castString(obj,"");
 	}
 

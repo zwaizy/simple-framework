@@ -19,4 +19,5 @@ public interface ConfigConstant {
 	
 	String APP_ASSET_PATH = "simple.framework.app.asset_path";
 
+	String APP_UPLOAD_LIMIT = "simple.framework.app.upload_limit";
 }

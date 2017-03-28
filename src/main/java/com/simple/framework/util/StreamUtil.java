@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,36 @@ import org.slf4j.LoggerFactory;
 public final class StreamUtil {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(StreamUtil.class);
+	
+	/**
+	 * 
+	 * copyStream
+	 * 方法描述: 将输入流复制到输出流 
+	 * 逻辑描述: 
+	 * @param inputStream
+	 * @param outputStream
+	 * @since Ver 1.00
+	 */
+	public static void copyStream(InputStream inputStream,OutputStream outputStream){
+		try {
+			byte[] by = new byte[5 * 1024];
+			int len = 0;
+			while((len = inputStream.read()) != -1){
+				outputStream.write(by, 0, len);
+				outputStream.flush();
+			}
+		} catch (Exception e) {
+			LOGGER.error("copy stream error .",e);
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				inputStream.close();
+				outputStream.close();
+			} catch (IOException e) {
+				LOGGER.error("close stream error .",e);
+			}
+		}
+	}
 	
 	public static String getString(InputStream in){
 		StringBuilder sb = new StringBuilder();

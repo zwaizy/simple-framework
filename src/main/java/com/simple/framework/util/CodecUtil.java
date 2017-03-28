@@ -3,6 +3,7 @@ package com.simple.framework.util;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +47,7 @@ public final class CodecUtil {
 	
 	/**
 	 * 
-	 * encodeURL
+	 * decodeURL
 	 * 方法描述: 将URL解码 
 	 * 逻辑描述: 
 	 * @param resource
@@ -62,5 +63,9 @@ public final class CodecUtil {
 			throw new RuntimeException(e);
 		}
 		return target;
+	}
+	
+	public static String md5(String source){
+		return DigestUtils.md5Hex(source);
 	}
 }
